@@ -21,6 +21,10 @@ class GeminiLiveAssistant:
         self.system_instruction = system_instruction
         self.client = genai.Client(api_key=self.api_key)
 
+        base_folder = os.path.dirname(os.path.abspath(__file__))
+        self.output_folder = os.path.join(base_folder, "audio_outputs")
+        os.makedirs(self.output_folder, exist_ok=True)
+
     async def _playback_loop(self, stream, buffer: deque, playback_started: asyncio.Event, streaming_done_flag: dict):
         await playback_started.wait()
         while not (streaming_done_flag["done"] and not buffer):
@@ -29,11 +33,16 @@ class GeminiLiveAssistant:
             else:
                 await asyncio.sleep(0.01)
 
-    async def chat_and_play(self, prompt: str, output_wav: str = "response.wav", start_delay: float = 2.0):
+    async def chat_and_play(self, prompt: str, output_wav: str = None, start_delay: float = 2.0):
         """
         Send a text prompt to the model and stream back audio.
         Plays audio through speakers and writes to `output_wav`.
         """
+
+        if not output_wav:
+            output_wav = os.path.join(self.output_folder, f"response_{hash(prompt) % 10000}.wav")
+
+
         # Prepare WAV file
         wf = wave.open(output_wav, "wb")
         wf.setnchannels(1)
@@ -91,9 +100,9 @@ class GeminiLiveAssistant:
         """
 
         # generate filename in current folder
-        base_folder = os.path.dirname(os.path.abspath(__file__))
+        
         filename = f"temp_resampled_{hash(input_wav) % 10000}.wav"
-        resampled_wav = os.path.join(base_folder, filename)
+        resampled_wav = os.path.join(self.output_folder, filename)
 
         self.resample_to_16k(input_wav, resampled_wav)
 

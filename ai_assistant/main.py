@@ -13,12 +13,16 @@ if __name__ == "__main__":
 
     async def run_examples():
 
+        base_folder = os.path.dirname(os.path.abspath(__file__))
+        output_folder = os.path.join(base_folder, "audio_outputs")
+        os.makedirs(output_folder, exist_ok=True)
+
         while True:
             message = input("\nUser> ")
             if message.lower() == "exit":
                 # Clean up all .wav files in the current folder
                 current_folder = os.path.dirname(os.path.abspath(__file__))
-                for wav_file in glob.glob(os.path.join(current_folder, "*.wav")):
+                for wav_file in glob.glob(os.path.join(output_folder, "*.wav")):
                     try:
                         os.remove(wav_file)
                     except Exception as e:
@@ -26,9 +30,8 @@ if __name__ == "__main__":
                 print(f"\n 🗑️  All the .wav files are deleted")
                 break
             
-            # generate filename in current folder
-            base_folder = os.path.dirname(os.path.abspath(__file__))
-            response_path = os.path.join(base_folder, f"response_{hash(message) % 10000}.wav")
+            # Unique response path
+            response_path = os.path.join(output_folder, f"response_{hash(message) % 10000}.wav")
 
             # 1) text → audio playback
             wav_file = await assistant.chat_and_play(message, output_wav=response_path) 
