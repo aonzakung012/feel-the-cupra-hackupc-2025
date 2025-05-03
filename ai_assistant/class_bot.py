@@ -117,12 +117,17 @@ class GeminiLiveAssistant:
         # configure for text output only
         config = {
             "response_modalities": ["TEXT"],
-            "system_instruction": "You are a transcription system. Your only task is to transcribe the spoken audio into accurate English text. Do not answer the content, just transcribe exactly what you hear. Consider that the input will be based on the owner's manual of the CUPRA Tavascan 2024."
+            "system_instruction": (
+                "You are an english transcription system. Your only task is to transcribe the spoken audio into accurate English text. "
+                "Do not answer the content, just transcribe exactly what you hear. Consider that the input will be based on the owner's manual of the CUPRA Tavascan 2024. "
+                "Always refer to the car as 'CUPRA Tavascan 2024' — correct any misheard or misspelled versions like 'Cupratavaskan', 'Kuprative Vaskin', 'Cooper Tavaskin', 'Cooper to Ask', 'Kupra Tavaskin' etc. "
+               # "Normalize similar names to 'CUPRA Tavascan 2024' without exceptions. "
+                "Always type the name CUPRA in capital letters."
+                "The input you have to transcribe is a question of the user about the CUPRA Tavascan 2024 car. "
+            )
         }
 
         transcript_parts: list[str] = []
-
-        #print("Assistant> ", end="")
 
         async with self.client.aio.live.connect(model=self.model, config=config) as session:
             # stream raw PCM in small chunks
@@ -132,7 +137,7 @@ class GeminiLiveAssistant:
                     break
                 # send each chunk as realtime audio
                 await session.send_realtime_input(audio=types.Blob(data=chunk, mime_type=mime_type))
-                await asyncio.sleep(0.01)  # pacing to avoid buffer issues
+                await asyncio.sleep(0.02)  # pacing to avoid buffer issues
 
             # signal end of audio stream
             await session.send_realtime_input(audio_stream_end=True)
@@ -140,10 +145,8 @@ class GeminiLiveAssistant:
             # collect all text responses
             async for message in session.receive():
                 if message.text:
-                   # print(message.text, end="", flush=True)
                     transcript_parts.append(message.text)
 
-       # print()
         wf.close()
         return "".join(transcript_parts)
 
