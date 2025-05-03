@@ -74,3 +74,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 ai_assistant/chatbot_env/
+
+ai_assistant/audio_outputs/
+
+ai_assistant/__pycache__/
