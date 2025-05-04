@@ -1,7 +1,12 @@
+cd ~/path/to/flask-audio-api
+
 docker build -t flask-audio-api .
+
 docker run --rm -it \
-  --device /dev/snd:/dev/snd \
-  -p 5000:5000 \
+  -v /mnt/wslg/PulseServer:/mnt/wslg/PulseServer:ro \
+  -e PULSE_SERVER=unix:/mnt/wslg/PulseServer \
+  -e AUDIO_DEVICE_INDEX=2 \
+  -p 5050:5050 \
   flask-audio-api
 
 

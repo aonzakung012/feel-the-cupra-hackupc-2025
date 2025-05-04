@@ -1,27 +1,22 @@
-# 1. Start from official slim Python image
 FROM python:3.9-slim
 
-# 2. Install system deps: PortAudio, PyAudio bindings, FFmpeg, build tools
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
       build-essential \
       portaudio19-dev \
       python3-pyaudio \
       ffmpeg \
+      pulseaudio-utils \
+      libpulse0 \
+      libasound2-plugins \
  && rm -rf /var/lib/apt/lists/*
 
-# 3. Set working dir
 WORKDIR /app
-
-# 4. Copy & install Python libs
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-# 5. Copy application code
 COPY . .
+EXPOSE 5050
 
-# 6. Expose Flask’s port
-EXPOSE 5000
+# Tell ALSA/Pulse where to find the WSL audio socket
+ENV PULSE_SERVER=unix:/mnt/wslg/PulseServer
 
-# 7. Start the app
 CMD ["python", "app.py"]
