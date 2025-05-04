@@ -78,3 +78,6 @@ ai_assistant/chatbot_env/
 ai_assistant/audio_outputs/
 
 ai_assistant/__pycache__/
+
+venv/
+.env
