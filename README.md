@@ -67,8 +67,19 @@ Cinematic equations with the real values of power, torque, acceleration curves, 
 
 ## Screenshots
 
+![F0](https://github.com/user-attachments/assets/15d5f9a0-cf7c-4b45-a1ce-69290d30af5a)
 
+![F1_1](https://github.com/user-attachments/assets/97f50a95-ec9e-4aab-8528-ac3e16d96f9f)
 
+![F2](https://github.com/user-attachments/assets/443c51f4-efef-4f75-ad2d-f4e8467e8ea1)
+
+![F3_1](https://github.com/user-attachments/assets/26f232ef-38b5-425c-a129-6bf0d05ffc03)
+
+![F4Edited](https://github.com/user-attachments/assets/8d318341-df41-4160-9769-ba4aaf130352)
+
+![F5](https://github.com/user-attachments/assets/6cb98668-a849-4a47-9938-7fd9eeb08a25)
+
+![cupra_bo](https://github.com/user-attachments/assets/c9291779-5761-49b4-a506-8702d5133a34)
 
 <br>
 <br>
