@@ -62,9 +62,14 @@ class GeminiLiveAssistant:
         play_task = asyncio.create_task(self._playback_loop(stream, buffer, playback_started, streaming_done_flag))
 
         config = {
-            "response_modalities": ["AUDIO"],
-            "system_instruction": self.system_instruction,
-        }
+                    "response_modalities": ["AUDIO"],
+                    "system_instruction": self.system_instruction,
+                    "speech_config": types.SpeechConfig(
+                        voice_config=types.VoiceConfig(
+                            prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name="Charon")
+                        )
+                    )
+                }
 
         async with self.client.aio.live.connect(model=self.model, config=config) as session:
             first_chunk = True
