@@ -6,7 +6,7 @@ from collections import deque
 from google.genai import types
 from google import genai
 from pydub import AudioSegment
-
+from tavascan_embeddings import CupraManualQA
 ##  sudo apt update
 ##  sudo apt install portaudio19-dev python3-pyaudio ffmpeg
 
@@ -61,22 +61,49 @@ class GeminiLiveAssistant:
         streaming_done_flag = {"done": False}
         play_task = asyncio.create_task(self._playback_loop(stream, buffer, playback_started, streaming_done_flag))
 
+        cupra = CupraManualQA(
+            pdf_url="https://www.cupraofficial.com.cy/datamanual-manual/manuals/cupra/en-uk/CUPRA_Tavascan_11_24_GB.pdf"
+        )
+        answers = cupra.search(prompt)
+        emb = ""
+        for idx, a in enumerate(answers):
+            print(f"\n--- Result {idx + 1} ---\n{a[:500]}...\n")
+            emb += f"\n--- Result {idx + 1} ---\n{a[:500]}...\n"
+
+        print(prompt)
+
+        system_instruction=(
+        "You are a helpful english assistant who only answers based on the CUPRA Tavascan 2024 owner's manual. "
+        "Be concise. Do not offer extra help unless asked. "
+        "If you don't understand the question ask politely if the user can repeat it."
+        "you may use the following information from the official manual, if the info is not there try to answer the question as best as possible:"
+        f"{emb}"
+        "remember your main task is to answer the users question, only provide info in km per hour"
+        "keep the answer concise"
+
+        )
+
         config = {
                     "response_modalities": ["AUDIO"],
-                    "system_instruction": self.system_instruction,
+                    "system_instruction": system_instruction ,
                     "speech_config": types.SpeechConfig(
                         voice_config=types.VoiceConfig(
                             prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name="Charon")
                         )
                     )
                 }
+        
+
+
 
         async with self.client.aio.live.connect(model=self.model, config=config) as session:
             first_chunk = True
 
             # send prompt
             await session.send_client_content(
-                turns={"role":"user", "parts":[{"text": prompt}]},
+                turns={
+                    
+                    "role":"user", "parts":[{"text": prompt}]},
                 turn_complete=True
             )
 
@@ -126,14 +153,19 @@ class GeminiLiveAssistant:
         config = {
             "response_modalities": ["TEXT"],
             "system_instruction": (
-                "You are an english transcription system. Your only task is to transcribe the spoken audio into accurate English text. "
-                "Do not answer the content, just transcribe exactly what you hear. Consider that the input will be based on the owner's manual of the CUPRA Tavascan 2024. "
-                "Always refer to the car as 'CUPRA Tavascan 2024' — correct any misheard or misspelled versions like 'Cupratavaskan', 'Kuprative Vaskin', 'Cooper Tavaskin', 'Cooper to Ask', 'Kupra Tavaskin' etc. "
-               # "Normalize similar names to 'CUPRA Tavascan 2024' without exceptions. "
-                "Always type the name CUPRA in capital letters."
-                "The input you have to transcribe is a question of the user about the CUPRA Tavascan 2024 car. "
+                "Your task it to repeat exactly what is said on the audio, it should be a question from a user involving a CUPRA Tavascan 2024"
+
             )
         }
+        #    "system_instruction": (
+        #        "You are an english transcription system. Your only task is to transcribe the spoken audio into accurate English text. "
+        #        "Do not answer the content, just transcribe exactly what you hear. Consider that the input will be based on the owner's manual of the CUPRA Tavascan 2024. "
+        #        "Always refer to the car as 'CUPRA Tavascan 2024' — correct any misheard or misspelled versions like 'Cupratavaskan', 'Kuprative Vaskin', 'Cooper Tavaskin', 'Cooper to Ask', 'Kupra Tavaskin' etc. "
+        #       # "Normalize similar names to 'CUPRA Tavascan 2024' without exceptions. "
+        #        "Always type the name CUPRA in capital letters."
+        #        "The input you have to transcribe is a question of the user about the CUPRA Tavascan 2024 car. "
+        #    )
+        #}
 
         transcript_parts: list[str] = []
 

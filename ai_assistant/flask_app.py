@@ -15,13 +15,7 @@ from class_bot import GeminiLiveAssistant
 load_dotenv()
 
 # init assistant
-assistant = GeminiLiveAssistant(
-    system_instruction=(
-        "You are a helpful english assistant who only answers based on the CUPRA Tavascan 2024 owner's manual. "
-        "Be concise. Do not offer extra help unless asked. "
-        "If you don't understand the question ask politely if the user can repeat it."
-    )
-)
+assistant = GeminiLiveAssistant()
 
 # ensure output folder exists
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -64,7 +58,7 @@ async def one_iteration():
 
     # 2) text → assistant audio + playback
     resp_path = os.path.join(OUTPUT_FOLDER, f"response_{hash(user_text)%10000}.wav")
-    out_wav = await assistant.chat_and_play(user_text, output_wav=resp_path)
+    out_wav = await assistant.chat_and_play(user_text,output_wav=resp_path)
 
     # 3) assistant audio → text
     reply_text = await assistant.transcribe_audio(out_wav)
