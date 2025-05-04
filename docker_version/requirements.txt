@@ -1,0 +1,6 @@
+flask
+python-dotenv
+PyAudio
+sounddevice
+pydub
+google-genai

@@ -1,0 +1,9 @@
+docker build -t flask-audio-api .
+docker run --rm -it \
+  --device /dev/snd:/dev/snd \
+  -p 5000:5000 \
+  flask-audio-api
+
+
+
+curl "http://localhost:5050/"
