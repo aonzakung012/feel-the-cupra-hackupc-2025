@@ -49,10 +49,12 @@ This digital twin includes many state of the art functionalities, such as a **3D
 ## Key Features
 
 - **Interactive user-friendly digital twin** to showcase all car features.
-- **Voice interactive AI assistant** that acts in place of the user manual to answer any customer question about the car.
+  
+- **Voice interactive AI assistant**: it knows all about the user manual and answer the questions the customer has about the car using:
   - Gemini 2.0 Flash
-  - Embeddings
+  - Embeddings (RAG strategy)
   - Voice processing
+  - Pipeline: Record user audio -> precess audio and answer based on the manual -> output the response audio and transcript to text
 
 - **Mind controlled physically accurate driving simulation** to showcase the acceleration and brakes of the car.
     
