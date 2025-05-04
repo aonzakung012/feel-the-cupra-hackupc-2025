@@ -5,7 +5,9 @@ import glob
 import tempfile
 import pyaudio
 import wave
+from dotenv import load_dotenv
 
+load_dotenv()
 
 # --- Audio setup ---
 FORMAT = pyaudio.paInt16

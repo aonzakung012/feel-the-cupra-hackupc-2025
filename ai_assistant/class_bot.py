@@ -7,6 +7,9 @@ from google.genai import types
 from google import genai
 from pydub import AudioSegment
 
+##  sudo apt update
+##  sudo apt install portaudio19-dev python3-pyaudio ffmpeg
+
 class GeminiLiveAssistant:
     def __init__(
         self,
@@ -100,15 +103,15 @@ class GeminiLiveAssistant:
         """
 
         # generate filename in current folder
-        
-        filename = f"temp_resampled_{hash(input_wav) % 10000}.wav"
-        resampled_wav = os.path.join(self.output_folder, filename)
-
-        self.resample_to_16k(input_wav, resampled_wav)
+        #
+        #filename = f"temp_resampled_{hash(input_wav) % 10000}.wav"
+        #resampled_wav = os.path.join(self.output_folder, filename)
+#
+        #self.resample_to_16k(input_wav, resampled_wav)
 
 
         # open the WAV and check format
-        wf = wave.open(resampled_wav, "rb")
+        wf = wave.open(input_wav, "rb")
         assert wf.getnchannels() == 1 and wf.getsampwidth() == 2, "Audio must be mono 16-bit PCM"
         sr = wf.getframerate()
         # note: Live API officially expects 16 kHz input; if your file is 24 kHz you may want to resample.
@@ -149,13 +152,6 @@ class GeminiLiveAssistant:
 
         wf.close()
         return "".join(transcript_parts)
-
-    @staticmethod
-    def resample_to_16k(input_wav, output_wav):
-        audio = AudioSegment.from_wav(input_wav)
-        audio = audio.set_frame_rate(16000).set_channels(1).set_sample_width(2)
-        audio.export(output_wav, format="wav")
-
 
     async def _start_after_delay(self, event: asyncio.Event, delay: float):
         await asyncio.sleep(delay)
